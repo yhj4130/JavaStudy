@@ -197,7 +197,7 @@ public class Test100 {
 			System.out.printf("%4d", i);
 			w++;	//-- 날짜가 증가하는 만큼 요일도 함께 증가할 수 있도록 처리
 
-			if (w%7==0)	// 일요일마다
+			if (w%7==0)	// 토요일마다
 			{
 				System.out.println();
 			}
