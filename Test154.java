@@ -17,6 +17,8 @@
 //    담아내는 것이 가능하다.
 //	  → 접근 방법 → 데이터 안정성 확보 -- check
 
+import java.util.Vector;
+import java.util.Iterator;
 
 // MyVector 클래스 설계 → Vector 클래스 상속
 class MyVector extends Vector<Object> {
@@ -39,10 +41,83 @@ class MyVector extends Vector<Object> {
 		addElement(new Integer(i));
 	}
 	
-	
-}
+	void addFloat(float f) {
 
-import java.util.Vector;
+		addElement(new Float(f));
+	}
+
+	void addString(String s) {
+
+		addElement(s);
+	}
+
+	void addCharArray(char[] a) {
+
+		addElement(a);
+	}
+
+	void write() {
+		
+		/*
+		Iterator<Object> it = this.iterator();
+		while (it.hasNext())
+		{
+			System.out.println(it.next());
+		}
+		*/
+		//--==>> 5
+		//		 3.14
+		//		 안녕하세요
+		//		 [C@15db9742
+		
+		// 위의 결과와 비교
+
+		Object o;
+		int length = size();
+
+		System.out.println("벡터 요소 갯수 : " + length);
+		//--==>> 벡터 요소 갯수 : 4
+
+		for (int i=0; i<length; i++)
+		{
+			o = elementAt(i);
+
+			// 『instanceof』 연산자
+			//-- 처리해야 하는 대상의 객체 타입 확인
+
+			if (o instanceof Integer)
+			{
+				System.out.println("정수형 : " + o);
+			}
+			else if (o instanceof Float)
+			{
+				System.out.println("실수형 : " + o);
+			}
+			else if (o  instanceof String)
+			{
+				System.out.println("문자열형 : " + o.toString());
+			}
+			else if (o instanceof char[])
+			{
+				System.out.println("문자배열 : " + String.copyValueOf((char[])o));
+				for (char ch : (char[])o)
+				{
+					System.out.print(ch);
+				}
+				System.out.println();
+			}
+			else
+				System.out.println("타입 확인 불가");
+
+			//--==>> 정수형 : 5
+			//		 실수형 : 3.14
+			//		 문자열형 : 안녕하세요
+			//		 문자배열 : study
+			//		 study
+
+		}
+	}
+}
 
 public class Test154 {
 
@@ -65,3 +140,15 @@ public class Test154 {
 		v.write();
 	}
 }
+
+
+// 실행 결과
+/*
+벡터 요소 갯수 : 4
+정수형 : 5
+실수형 : 3.14
+문자열형 : 안녕하세요
+문자배열 : study
+study
+계속하려면 아무 키나 누르십시오 . . .
+*/
